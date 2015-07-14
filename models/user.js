@@ -26,7 +26,8 @@ User.prototype.sendToClear = function(fn){
       return page.open("https://clear.titleboxingclub.com/", function(status) {
         console.log("Title Boxing accessed: ", status);
         return page.evaluate((function() {
-          return document.title;
+          console.log(document.getElementById('ctl00_cphBody_tbID').textContent);
+          console.log(document.getElementById('ctl00$cphBody$tbPWD').textContent);
         }), function(result) {
           console.log('Page title is ' + result);
           return ph.exit();
