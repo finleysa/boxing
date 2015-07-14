@@ -13,12 +13,15 @@ block content
         fieldset
           legend Guest Registration Form
           .row
-            .medium-6.columns
+            .medium-4.columns
               label First Name
               input(name='firstname', type='text', autofocus=true required)
-            .medium-6.columns
+            .medium-4.columns
               label Last Name
               input(name='lastname', type='text' required)
+            .medium-4.columns
+              label Birth Date
+              input(name='birthdate', type='date' required)
           .row
             .small-12.columns
               label Address
@@ -57,7 +60,7 @@ block content
           .row
             .medium-6.columns
               label Class Date
-              input(name='classdate', type='text')
+              input(name='classdate', type='date')
             .medium-6.columns
               label Class Time
               input(name='classtime', type='text')

@@ -7,7 +7,8 @@ var phantom = require('phantom');
 
 function User(user){
   this.firstname = user.firstname;
-  this.lastname = user.lastname
+  this.lastname = user.lastname;
+  this.bithdate = user.birthdate;
   this.address = user.address;
   this.state = user.state;
   this.city = user.city;
@@ -16,23 +17,24 @@ function User(user){
   this.homephone = user.homephone;
   this.cellphone = user.cellphone;
   this.concent = user.concent;
+  this.date = new Date();
 }
 
 User.prototype.sendToClear = function(fn){
   phantom.create(function(ph) {
     return ph.createPage(function(page) {
-      return page.open("http://www.google.com", function(status) {
-        console.log("opened google? ", status);
+      return page.open("https://clear.titleboxingclub.com/", function(status) {
+        console.log("Title Boxing accessed: ", status);
         return page.evaluate((function() {
           return document.title;
         }), function(result) {
           console.log('Page title is ' + result);
-          fn(true);
           return ph.exit();
         });
       });
     });
   });
+  fn(true);
 }
 
 /*

@@ -13,7 +13,9 @@ router.post('/submit', function(req, res, next) {
   var user = new User(req.body);
   user.sendToClear(function(success){
     if(success){
-      console.log("New user added! " + user.firstname + " " + user.lastname);
+      var name = user.firstname + " " + user.lastname
+      console.log("New user added! " + name);
+      res.render('success', {name: name});
     } else {
       console.log("ERROR adding user");
     }
