@@ -2,75 +2,75 @@ extends layout
 
 block content
   .row 
-    .small-4.columns.small-centered
+    .medium-4.columns.medium-centered
       img(src="images/titleboxing.jpg")
   .row
-    .small-12.columns
+    .medium-12.columns
       h5 You must fill this form out in its entirety before participating in a boxing or kickboxing POWER HOUR fitness class. Hit it Hard ®
   .row
-    .small-12.columns
+    .medium-12.columns
       form(action='/submit', method='post')
         fieldset
           legend Guest Registration Form
           .row
-            .small-4.columns
+            .medium-4.columns
               label First Name
               input(name='firstname', type='text', autofocus=true required)
-            .small-4.columns
+            .medium-4.columns
               label Last Name
               input(name='lastname', type='text' required)
-            .small-4.columns
+            .medium-4.columns
               label Birth Date
               input(name='birthdate', type='date' required)
           .row
-            .small-12.columns
+            .medium-12.columns
               label Address
               input(name='address', type='text' required)
           .row
-            .small-6.columns
+            .medium-6.columns
               label City
               input(name='city', type='text' required)
-            .small-3.columns
+            .medium-3.columns
               label State
               input(name='State', type='text' required)
-            .small-3.columns
+            .medium-3.columns
               label Zip Code
               input(name='zip', type='text' required)
           .row
-            .small-6.columns
+            .medium-6.columns
               label Email Address
               input(name='email', type='text' required)
-            .small-3.columns
+            .medium-3.columns
               label Home Phone
               input(name='homephone', type='text')
-            .small-3.columns
+            .medium-3.columns
               label Cell Phone
               input(name='cellphone', type='text')
           .row
-            .small-2.columns
+            .medium-2.columns
               label Marital Status
               input(type='radio' name='married' value='married')
               |  Married
               br
               input(type='radio' name='married' value='single') 
               |  Single
-            .small-10.columns
+            .medium-10.columns
               label Employer
               input(name='employer', type='text')
           .row
-            .small-6.columns
+            .medium-6.columns
               label Class Date
               input(name='classdate', type='date')
-            .small-6.columns
+            .medium-6.columns
               label Class Time
               input(name='classtime', type='text')
           .row
-            .small-12.columns
+            .medium-12.columns
               input(name='concent' type='checkbox' required)
               |   I have read and understand the Guest Assumption of Risk, Consent, Release and Waiver.
           .row
-            .small-12.columns
-              button.small.radius Submit
+            .medium-12.columns
+              button.medium.radius Submit
 
               
         H3 GUEST ASSUMPTION OF RISK, CONSENT, RELEASE AND WAIVER
