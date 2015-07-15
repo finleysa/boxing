@@ -4,6 +4,7 @@ module.exports = User;
 var fs = require('fs');
 var path = require('path');
 var phantom = require('phantom');
+var $ = require('jquery');
 
 function User(user){
   this.firstname = user.firstname;
@@ -25,9 +26,10 @@ User.prototype.sendToClear = function(fn){
     return ph.createPage(function(page) {
       return page.open("https://clear.titleboxingclub.com/", function(status) {
         console.log("Title Boxing accessed: ", status);
+
         return page.evaluate((function() {
-          console.log(document.getElementById('ctl00_cphBody_tbID').textContent);
-          console.log(document.getElementById('ctl00$cphBody$tbPWD').textContent);
+          var login = $('#ctl00_cphBody_tbID').val();
+          var password = $('ctl00$cphBody$tbPWD').val();
         }), function(result) {
           console.log('Page title is ' + result);
           return ph.exit();
