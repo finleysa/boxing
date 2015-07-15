@@ -32,7 +32,7 @@ block content
               input(name='city', type='text' required)
             .medium-3.columns
               label State
-              input(name='State', type='text' required)
+              input(name='state', type='text' required)
             .medium-3.columns
               label Zip Code
               input(name='zip', type='text' required)
@@ -49,14 +49,21 @@ block content
           .row
             .medium-2.columns
               label Marital Status
-              input(type='radio' name='married' value='married')
+              input(type='radio' name='married' value='yes')
               |  Married
               br
-              input(type='radio' name='married' value='single') 
+              input(type='radio' name='married' value='no') 
               |  Single
             .medium-10.columns
               label Employer
               input(name='employer', type='text')
+          .row
+            .medium-6.columns
+              label Emergency Contact
+              input(name='emergencycontact', type='text')
+            .medium-6.columns
+              label Phone Number
+              input(name='ecphonenumber', type='text')
           .row
             .medium-6.columns
               label Class Date

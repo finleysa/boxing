@@ -4,7 +4,7 @@ module.exports = User;
 var fs = require('fs');
 var path = require('path');
 var phantom = require('phantom');
-var $ = require('jquery');
+var exec = require('child_process').exec;
 
 function User(user){
   this.firstname = user.firstname;
@@ -22,25 +22,41 @@ function User(user){
 }
 
 User.prototype.sendToClear = function(fn){
+  /*
   phantom.create(function(ph) {
     return ph.createPage(function(page) {
       return page.open("https://clear.titleboxingclub.com/", function(status) {
-        console.log("Title Boxing accessed: ", status);
-
-        return page.evaluate((function() {
-          $('#ctl00_cphBody_tbID').val('376');
-          $('#ctl00_cphBody_tbPWD').val('376Partners@');
-          console.log($('#ctl00_cphBody_tbID').val());
-          console.log($('#ctl00_cphBody_tbPWD').val());
-        }), function(result) {
-          console.log('Page title is ' + result);
-          return ph.exit();
+        return page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js", function() {
+          return page.evaluate(function() {
+            $('#ctl00_cphBody_bLogin').val("376");
+            $('ctl00_cphBody_tbPWD').val("376Partners@");
+            $('ctl00_cphBody_bLogin').click();
+            return $('#ctl00_cphBody_bLogin').val();
+          }, function(result){
+              console.log(result);
+              ph.exit();
+          });
         });
       });
     });
   });
-  fn(true);
-}
+  */
+  fs.writeFile('lib/message.txt', '')
+  for(var property in this){
+    if (this.hasOwnProperty(property)) {
+      fs.appendFileSync('lib/message.txt', this[property] + "\n");
+    }
+  }
+  exec('ruby /Users/Tweek/Documents/code/boxing/lib/mech.rb', function(err, stdout, stdin){
+    if(err){
+      console.log(err);
+      fn(false);
+    } else {
+      console.log('Prospect added!');
+      fn(true);
+    }
+  });
+};
 
 /*
 User.prototype.insert = function(fn){
