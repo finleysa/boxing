@@ -28,8 +28,10 @@ User.prototype.sendToClear = function(fn){
         console.log("Title Boxing accessed: ", status);
 
         return page.evaluate((function() {
-          var login = $('#ctl00_cphBody_tbID').val();
-          var password = $('ctl00$cphBody$tbPWD').val();
+          $('#ctl00_cphBody_tbID').val('376');
+          $('#ctl00_cphBody_tbPWD').val('376Partners@');
+          console.log($('#ctl00_cphBody_tbID').val());
+          console.log($('#ctl00_cphBody_tbPWD').val());
         }), function(result) {
           console.log('Page title is ' + result);
           return ph.exit();
