@@ -17,8 +17,13 @@ function User(user){
   this.email = user.email;
   this.homephone = user.homephone;
   this.cellphone = user.cellphone;
+  this.employer = user.employer;
+  this.emergencycontact = user.emergencycontact;
+  this.ecphonenumber = user.ecphonenumber;
+  this.classdate = user.classdate;
+  this.classtime = user.classtime;
+  this.referral = user.referral;
   this.concent = user.concent;
-  this.date = new Date();
 }
 
 User.prototype.sendToClear = function(fn){
