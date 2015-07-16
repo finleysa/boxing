@@ -18,7 +18,7 @@ puts "Logged in!"
 
 # GET PROPERTIES
 obj = Array.new
-f = File.open("/Users/Tweek/Documents/code/boxing/lib/message.txt", "r")
+f = File.open(File.dirname(__FILE__) + "/message.txt", "r")
 f.each_line do |line|
   obj << line
 end
