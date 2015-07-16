@@ -1,6 +1,7 @@
 (function(){
 
   $(document).ready(initialize);
+  $(document).foundation();
 
   function initialize(){
       $('#registration-form').submit(showSpinner)
