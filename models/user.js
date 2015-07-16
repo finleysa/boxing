@@ -47,7 +47,7 @@ User.prototype.sendToClear = function(fn){
       fs.appendFileSync('lib/message.txt', this[property] + "\n");
     }
   }
-  exec('ruby /Users/Tweek/Documents/code/boxing/lib/mech.rb', function(err, stdout, stdin){
+  exec('ruby ' + __dirname +'/../lib/mech.rb', function(err, stdout, stdin){
     if(err){
       console.log(err);
       fn(false);

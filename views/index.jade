@@ -9,7 +9,7 @@ block content
       h5 You must fill this form out in its entirety before participating in a boxing or kickboxing POWER HOUR fitness class. Hit it Hard ®
   .row
     .medium-12.columns
-      form(action='/submit', method='post')
+      form#registration-form(action='/submit', method='post')
         fieldset
           legend Guest Registration Form
           .row
@@ -47,6 +47,9 @@ block content
               label Cell Phone
               input(name='cellphone', type='text')
           .row
+            .medium-10.columns
+              label Employer
+              input(name='employer', type='text')
             .medium-2.columns
               label Marital Status
               input(type='radio' name='married' value='yes')
@@ -54,9 +57,6 @@ block content
               br
               input(type='radio' name='married' value='no') 
               |  Single
-            .medium-10.columns
-              label Employer
-              input(name='employer', type='text')
           .row
             .medium-6.columns
               label Emergency Contact
@@ -72,13 +72,19 @@ block content
               label Class Time
               input(name='classtime', type='text')
           .row
+            .medium-6.columns
+              label How Did You Hear About Us?
+              input(name='classdate', type='text')
+          .row
             .medium-12.columns
               input(name='concent' type='checkbox' required)
               |   I have read and understand the Guest Assumption of Risk, Consent, Release and Waiver.
           .row
-            .medium-12.columns
-              button.medium.radius Submit
-
+            .medium-2.columns
+              button#submit.medium.radius Submit
+              img#spinner.hide(src="images/loading.gif")
+            .medium-10.columns
+          
               
         H3 GUEST ASSUMPTION OF RISK, CONSENT, RELEASE AND WAIVER
         p Boxing and kickboxing courses offered by Tribune Boxing LLC, an independently owned and operated franchisee of TBC International, LLC, and its owners, employees, and instructors (collectively “Fitness Center”) could involve physical contact with other individuals and/or heavy bags, which may result in personal injury. Other programs offered by the Fitness Center, including weight lifting, aerobics and other events also present a risk in personal injury to the participant (you). In consideration of mutual agreements by which I will use the premises of Tribune Boxing LLC d/b/a TITLE BOXING CLUB®, which I acknowledge to be beneficial to me, I acknowledge and agree to the : 

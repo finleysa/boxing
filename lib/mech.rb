@@ -1,14 +1,15 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'mechanize'
+require_relative 'keys'
 
 agent = Mechanize.new
 page = agent.get('https://clear.titleboxingclub.com/clubLogin.aspx')
 
 # LOGIN
 login_form = page.form_with(:id => 'aspnetForm') do |f|
-  f.field_with(:name => 'ctl00$cphBody$tbID').value = '376'
-  f.field_with(:name => 'ctl00$cphBody$tbPWD').value = '376Partners@'
+  f.field_with(:name => 'ctl00$cphBody$tbID').value = get_username
+  f.field_with(:name => 'ctl00$cphBody$tbPWD').value = get_password
 end
 
 # NEW PROSPECT FORM
