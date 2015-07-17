@@ -16,6 +16,7 @@
     "jquery": "*",
     "recaptcha": "~1.2.1",
     "twilio": "*",
-    "mongodb": "2.0.39"
+    "mongodb": "2.0.39",
+    "validator": "3.41.2"
   }
 }

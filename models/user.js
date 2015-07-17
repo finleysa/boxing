@@ -27,6 +27,8 @@ function User(user){
   this.classdate = user.classdate;
   this.classtime = user.classtime;
   this.referral = user.referral;
+  this.married = user.married;
+  this.location = user.location;
   this.concent = user.concent;
 }
 
@@ -38,24 +40,24 @@ User.prototype.sendToClear = function(fn){
       fs.appendFileSync('lib/message.txt', this[property] + "\n");
     }
   }
-  
+
   exec('ruby ' + __dirname +'/../lib/mech.rb', function(err, stdout, stdin){
     if(err){
       console.log(err);
       fn(false);
     } else {
       console.log('Prospect added!');
-      // sendMessage(that.cellphone);
+      //sendMessage(that.cellphone);
       fn(true);
     }
   });
 };
 
 function sendMessage(cellphone) {
-  var client = new twilio.RestClient(keys[0], keys[1]);
+  //var client = new twilio.RestClient('', '');
   client.sms.messages.create({
       to: cellphone,
-      from:'+18702935111',
+      from:'+16156868516',
       body:'Show this message to your local title gym for a free Power Hour!'
   }, function(error, message) {
       // The HTTP request to Twilio will run asynchronously. This callback

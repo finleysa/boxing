@@ -23,58 +23,69 @@ block content
               label Birth Date
               input(name='birthdate', type='date' required)
           .row
-            .medium-12.columns
+            .medium-4.columns
               label Address
               input(name='address', type='text' required)
-          .row
-            .medium-6.columns
+            .medium-4.columns
               label City
               input(name='city', type='text' required)
-            .medium-3.columns
+            .medium-2.columns
               label State
               input(name='state', type='text' required)
-            .medium-3.columns
+            .medium-2.columns
               label Zip Code
               input(name='zip', type='text' required)
           .row
-            .medium-6.columns
+            .medium-4.columns
               label Email Address
               input(name='email', type='text' required)
-            .medium-3.columns
-              label Home Phone
-              input(name='homephone', type='text')
-            .medium-3.columns
-              label Cell Phone
+            .medium-4.columns
+              label Best Phone #
               input(name='cellphone', type='text')
-          .row
-            .medium-10.columns
+            .medium-4.columns
               label Employer
               input(name='employer', type='text')
-            .medium-2.columns
+          .row
+            .medium-4.columns
               label Marital Status
               input(type='radio' name='married' value='yes')
-              |  Married
-              br
+              |  Married&nbsp;  
               input(type='radio' name='married' value='no') 
               |  Single
-          .row
-            .medium-6.columns
+            .medium-4.columns
               label Emergency Contact
-              input(name='emergencycontact', type='text')
-            .medium-6.columns
+              input(name='emergencycontact', type='text' required)
+            .medium-4.columns
               label Phone Number
-              input(name='ecphonenumber', type='text')
+              input(name='ecphonenumber', type='text' required)
           .row
-            .medium-6.columns
+
+          .row
+            .medium-4.columns
+              label Choose Location:
+              input(type='radio' name='location' value='coolsprings')
+              |  Cool Springs&nbsp;    
+              input(type='radio' name='location' value='greenhills') 
+              |  Green Hills
+            .medium-2.columns
               label First Class Date
               input(name='classdate', type='date')
-            .medium-6.columns
-              label First Class Time
+            .medium-2.columns
+              label First Class Time 
               input(name='classtime', type='text')
+            .medium-4.columns
+              label Click Below For Class Times:
+              a(href="http://franklin-coolsprings.titleboxingclub.com/about/class-schedule/") Cool Springs 
+              br
+              a(href="http://nashville-greenhills.titleboxingclub.com/about/class-schedule/") Green Hills
           .row
             .medium-6.columns
               label How Did You Hear About Us?
               input(name='referral', type='text')
+          .row
+            .medium-12
+              label Fitness Goals
+              textarea( rows="2")
           .row
             .medium-12.columns
               input(name='concent' type='checkbox' required)

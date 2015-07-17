@@ -4,17 +4,6 @@ require 'mechanize'
 require_relative 'keys'
 
 agent = Mechanize.new
-page = agent.get('https://clear.titleboxingclub.com/clubLogin.aspx')
-
-# LOGIN
-login_form = page.form_with(:id => 'aspnetForm') do |f|
-  f.field_with(:name => 'ctl00$cphBody$tbID').value = get_username
-  f.field_with(:name => 'ctl00$cphBody$tbPWD').value = get_password
-end
-
-# NEW PROSPECT FORM
-page = login_form.click_button
-puts "Logged in!"
 
 # GET PROPERTIES
 obj = Array.new
@@ -23,6 +12,34 @@ f.each_line do |line|
   obj << line
 end
 f.close
+
+page = agent.get('https://clear.titleboxingclub.com/clubLogin.aspx')
+
+username = ""
+password = ""
+location = obj[17].chomp!
+
+if location == "coolsprings"
+  puts "coolsprings"
+  username = get_username_coolsprings
+  password = get_password_coolsprings
+elsif location == "greenhills"
+  puts "greenhills"
+  username = get_username_greenhills
+  password = get_password_greenhills
+end
+
+puts username +" "+ password
+
+# LOGIN
+login_form = page.form_with(:id => 'aspnetForm') do |f|
+  f.field_with(:name => 'ctl00$cphBody$tbID').value = username
+  f.field_with(:name => 'ctl00$cphBody$tbPWD').value = password
+end
+
+# NEW PROSPECT FORM
+page = login_form.click_button
+puts "Logged in!"
 
 =begin
 0  this.firstname = user.firstname;
@@ -41,10 +58,10 @@ f.close
 13 this.classdate = user.classdate;
 14 this.classtime = user.classtime;
 15 this.referral = user.referral;
-16 this.concent = user.concent;
+16 this.married = user.married;
+17 this.location = user.location;
+18 this.concent = user.concent;
 =end
-
-emergency_contact = 'Emergency Contact: ' + obj[11] + ': ' + obj[12]
 
 page = page.link_with(:href => '/prospects/NewProspect.aspx').click
 input = 'ctl00$ctl00$ctl00$cphMainBody$cphBody$cphProspectBody$'
@@ -62,9 +79,15 @@ new_form = page.form_with(:id => 'aspnetForm') do |f|
   f.field_with(:name => "#{input}ddEnteredBy").options[2].select
   f.field_with(:name => "#{input}ddSalesPerson").options[2].select
   f.field_with(:name => "#{input}tbEmail").value = obj[7]
+  #f.field_with(:name => "#{input}tbAddNote").value = obj[10]
+  if obj[16] = 'no'
+    f.field_with(:name => "#{input}ddMarried").options[1].select
+  elsif obj[16] = 'yes'
+    f.field_with(:name => "#{input}ddMarried").options[2].select
+  end
+  f.field_with(:name => "#{input}tbEmail").value = obj[7]
   #f.field_with(:name => "#{input}tbEMCFirstName").value = obj[11];
   #f.field_with(:name => "#{input}tbEMCHomePhone").value = obj[12];
-  f.field_with(:name => "#{input}tbFirstShotDate").value = obj[13]
 end
 # new_form.click_button(new_form.button_with(:name => "#{input}bEMCAdd"))
 new_form.click_button(new_form.button_with(:name => "#{input}bSave"))
