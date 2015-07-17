@@ -13,8 +13,8 @@
     "jade": "~1.9.2",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
-    "phantom": "~0.7.2",
     "jquery": "*",
-    "recaptcha": "~1.2.1"
+    "recaptcha": "~1.2.1",
+    "twilio": "*"
   }
 }

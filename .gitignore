@@ -1,2 +1,3 @@
 node_modules/
 lib/keys.rb
+lib/twilio.txt

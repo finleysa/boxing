@@ -3,8 +3,13 @@ module.exports = User;
 //var Mongo = require('mongodb');
 var fs = require('fs');
 var path = require('path');
-var phantom = require('phantom');
 var exec = require('child_process').exec;
+var twilio = require('twilio');
+var keys = fs.readFile(__dirname +'/../lib/twilio.txt', 'utf-8', function(err, data){
+  return data.split(' ');
+})
+var client = new twilio.RestClient(keys[0], keys[1]);
+
 
 function User(user){
   this.firstname = user.firstname;
@@ -27,42 +32,52 @@ function User(user){
 }
 
 User.prototype.sendToClear = function(fn){
-  /*
-  phantom.create(function(ph) {
-    return ph.createPage(function(page) {
-      return page.open("https://clear.titleboxingclub.com/", function(status) {
-        return page.includeJs("http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js", function() {
-          return page.evaluate(function() {
-            $('#ctl00_cphBody_bLogin').val("376");
-            $('ctl00_cphBody_tbPWD').val("376Partners@");
-            $('ctl00_cphBody_bLogin').click();
-            return $('#ctl00_cphBody_bLogin').val();
-          }, function(result){
-              console.log(result);
-              ph.exit();
-          });
-        });
-      });
-    });
-  });
-  */
   fs.writeFile('lib/message.txt', '')
+  var that = this;
   for(var property in this){
     if (this.hasOwnProperty(property)) {
       fs.appendFileSync('lib/message.txt', this[property] + "\n");
     }
   }
+
   exec('ruby ' + __dirname +'/../lib/mech.rb', function(err, stdout, stdin){
     if(err){
       console.log(err);
       fn(false);
     } else {
       console.log('Prospect added!');
+      // sendMessage(that.cellphone);
       fn(true);
     }
   });
 };
 
+function sendMessage(cellphone) {
+  client.sms.messages.create({
+      to: cellphone,
+      from:'+18702935111',
+      body:'Show this message to your local title gym for a free Power Hour!'
+  }, function(error, message) {
+      // The HTTP request to Twilio will run asynchronously. This callback
+      // function will be called when a response is received from Twilio
+      // The "error" variable will contain error information, if any.
+      // If the request was successful, this value will be "falsy"
+      if (!error) {
+          // The second argument to the callback will contain the information
+          // sent back by Twilio for the request. In this case, it is the
+          // information about the text messsage you just sent:
+          console.log('Success! The SID for this SMS message is:');
+          console.log(message.sid);
+
+          console.log('Message sent on:');
+          console.log(message.dateCreated);
+      } else {
+          console.log(error);
+          console.log(message);
+          console.log('Oops! There was an error.');
+      }
+    });
+}
 /*
 User.prototype.insert = function(fn){
   var self = this;
