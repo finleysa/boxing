@@ -8,8 +8,6 @@ var twilio = require('twilio');
 var keys = fs.readFile(__dirname +'/../lib/twilio.txt', 'utf-8', function(err, data){
   return data.split(' ');
 })
-var client = new twilio.RestClient(keys[0], keys[1]);
-
 
 function User(user){
   this.firstname = user.firstname;
@@ -53,6 +51,7 @@ User.prototype.sendToClear = function(fn){
 };
 
 function sendMessage(cellphone) {
+  var client = new twilio.RestClient(keys[0], keys[1]);
   client.sms.messages.create({
       to: cellphone,
       from:'+18702935111',
