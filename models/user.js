@@ -5,6 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var exec = require('child_process').exec;
 var twilio = require('twilio');
+var Mongo = require('mongodb');
 var keys = fs.readFile(__dirname +'/../lib/twilio.txt', 'utf-8', function(err, data){
   return data.split(' ');
 })
@@ -37,7 +38,7 @@ User.prototype.sendToClear = function(fn){
       fs.appendFileSync('lib/message.txt', this[property] + "\n");
     }
   }
-
+  
   exec('ruby ' + __dirname +'/../lib/mech.rb', function(err, stdout, stdin){
     if(err){
       console.log(err);
@@ -77,10 +78,10 @@ function sendMessage(cellphone) {
       }
     });
 }
-/*
+
 User.prototype.insert = function(fn){
   var self = this;
-
+  var users = global.dbCollection.db.collection('users');
   users.findOne({email:self.email}, function(err, record){
     if(!record){
       users.insert(self, function(err, records){
@@ -92,11 +93,11 @@ User.prototype.insert = function(fn){
   });
 };
 
+
 User.findById = function(id, fn){
   var _id = Mongo.ObjectID(id);
-
+  var users = global.dbCollection.db.collection('users');
   users.findOne({_id:_id}, function(err, record){
     fn(record);
   });
 };
-*/

@@ -1,6 +1,9 @@
 extends layout
 
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  .row
+    .small-8.columns.small-centered
+      br
+      br
+      h2= error
+      a.button(href="/") Back
