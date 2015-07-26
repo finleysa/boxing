@@ -29,7 +29,8 @@ function User(user){
   this.referral = user.referral;
   this.married = user.married;
   this.location = user.location;
-  this.concent = user.concent;
+  this.fitnessgoals = user.fitnessgoals;
+  //this.concent = user.concent;
 }
 
 User.prototype.sendToClear = function(fn){

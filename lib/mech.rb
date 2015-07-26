@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'mechanize'
+require 'mailgun'
 require_relative 'keys'
 
 agent = Mechanize.new
@@ -17,19 +18,17 @@ page = agent.get('https://clear.titleboxingclub.com/clubLogin.aspx')
 
 username = ""
 password = ""
+email = ""
 location = obj[17].chomp!
+twilio_key = get_mailgun_key
 
 if location == "coolsprings"
-  puts "coolsprings"
   username = get_username_coolsprings
   password = get_password_coolsprings
 elsif location == "greenhills"
-  puts "greenhills"
   username = get_username_greenhills
   password = get_password_greenhills
 end
-
-puts username +" "+ password
 
 # LOGIN
 login_form = page.form_with(:id => 'aspnetForm') do |f|
@@ -60,25 +59,35 @@ puts "Logged in!"
 15 this.referral = user.referral;
 16 this.married = user.married;
 17 this.location = user.location;
-18 this.concent = user.concent;
+18 this.fitnessgoals = user.fitnessgoals;
+21 this.concent = user.concent;
 =end
 
 page = page.link_with(:href => '/prospects/NewProspect.aspx').click
 input = 'ctl00$ctl00$ctl00$cphMainBody$cphBody$cphProspectBody$'
+notes = "First Shot Requested Time: " + obj[14] + " ----- Workout Goals: " + obj[18]
 
 new_form = page.form_with(:id => 'aspnetForm') do |f|
+
+  #f.field_with(:name="#{input}tbEMCFirstName").value = ec_contact[0]
+  #f.field_with(:name="#{input}tbEMCLastName").value = ec_contact[1]
+  #f.field_with(:name="#{input}tbEMCHomePhone").value = obj[12]
+
   f.field_with(:name => "#{input}tbFirstName").value = obj[0]
   f.field_with(:name => "#{input}tbLastName").value = obj[1]
   f.field_with(:name => "#{input}tbBirthDate").value = obj[2]
   f.field_with(:name => "#{input}tbAddress").value = obj[3]
-  f.field_with(:name => "#{input}tbHomePhone").value = obj[8]
+  f.field_with(:name => "#{input}tbHomePhone").value = obj[9]
   f.field_with(:name => "#{input}tbCellPhone").value = obj[9]
   f.field_with(:name => "#{input}tbCity").value = obj[5]
   f.field_with(:name => "#{input}tbZip").value = obj[6]
   f.field_with(:name => "#{input}tbReferral").value = obj[15]
-  f.field_with(:name => "#{input}ddEnteredBy").options[2].select
-  f.field_with(:name => "#{input}ddSalesPerson").options[2].select
+  f.field_with(:name => "#{input}ddEnteredBy").options[12].select
+  f.field_with(:name => "#{input}ddSalesPerson").options[12].select
   f.field_with(:name => "#{input}tbEmail").value = obj[7]
+  f.field_with(:name => "#{input}tbHistoryNote").value = notes
+  f.field_with(:name => "#{input}tbFirstShotDate").value = obj[13]
+
   #f.field_with(:name => "#{input}tbAddNote").value = obj[10]
   if obj[16] = 'no'
     f.field_with(:name => "#{input}ddMarried").options[1].select
@@ -91,5 +100,21 @@ new_form = page.form_with(:id => 'aspnetForm') do |f|
 end
 # new_form.click_button(new_form.button_with(:name => "#{input}bEMCAdd"))
 new_form.click_button(new_form.button_with(:name => "#{input}bSave"))
+
+=begin
+mg_client = Mailgun::Client.new(twilio_key)
+
+message_params = {:from    => 'bob@sending_domain.com',
+                  :to      => 'steve.a.finley@gmail.com',
+                  :subject => 'The Ruby SDK is awesome!',
+                  :text    => 'It is really easy to send a message!'}
+
+result = mg_client.send_message("example.com", message_params).to_h!
+
+message_id = result['id']
+message = result['message']
+
+puts message
+=end
 
 puts "prospect successfully added!"

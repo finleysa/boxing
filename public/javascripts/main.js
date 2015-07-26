@@ -1,15 +1,26 @@
 (function(){
 
   $(document).ready(initialize);
-  $(document).foundation();
 
   function initialize(){
-      $('#registration-form').submit(showSpinner)
+      $('#registration-form').submit(showSpinner);
+      $('input[type=radio][name="location"]').change(locationChosen);
     }
 
   function showSpinner(){
     $('#submit').addClass('hide');
     $('#spinner').removeClass('hide');
+  }
+
+  function locationChosen(){
+    if($('#coolsprings').is(':checked')){
+      $('#ghschedule').hide();
+      $('#csschedule').show();
+    }
+    else if($('#greenhills').is(':checked')){
+      $('#ghschedule').show();
+      $('#csschedule').hide();
+    }
   }
 
 })();

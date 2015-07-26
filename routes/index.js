@@ -5,11 +5,15 @@ var Mongo = require('mongodb');
 var path = require('path');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/', function(req, res, next){
+  res.render('home');
+})
+
+router.get('/register', function(req, res, next) {
+  res.render('index', { title: 'TB Registration' });
 });
 
-router.post('/submit', function(req, res, next) {
+router.post('/register/submit', function(req, res, next) {
   console.log(req.body);
 
   var user = new User(req.body);
