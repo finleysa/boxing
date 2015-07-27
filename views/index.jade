@@ -14,75 +14,75 @@ block content
           legend Guest Registration Form
           .row
             .medium-4.columns
-              label * First Name
+              label: strong * First Name
               input(name='firstname', type='text', autofocus=true required)
             .medium-4.columns
-              label * Last Name
+              label: strong * Last Name
               input(name='lastname', type='text' required)
             .medium-4.columns
-              label * Birth Date
+              label: strong * Birth Date
               input(name='birthdate', type='date' required)
           .row
             .medium-4.columns
-              label * Address
+              label: strong * Address
               input(name='address', type='text' required)
             .medium-4.columns
-              label * City
+              label: strong * City
               input(name='city', type='text' required)
             .medium-2.columns
-              label * State
+              label: strong * State
               input(name='state', type='text' required)
             .medium-2.columns
-              label * Zip Code
+              label: strong * Zip Code
               input(name='zip', type='text' required)
           .row
             .medium-4.columns
-              label * Email Address
+              label: strong * Email Address
               input(name='email', type='text' required)
             .medium-4.columns
-              label * Best Phone #
+              label: strong * Best Phone #
               input(name='cellphone', type='text', required)
             .medium-4.columns
-              label Employer
+              label: strong Employer
               input(name='employer', type='text')
           .row
             .medium-4.columns
-              label Marital Status
+              label: strong Marital Status
               input(type='radio' name='married' value='yes')
               |  Married&nbsp;  
               input(type='radio' name='married' value='no') 
               |  Single
             .medium-4.columns
-              label * Emergency Contact
+              label: strong * Emergency Contact
               input(name='emergencycontact', type='text' required)
             .medium-4.columns
-              label * Phone Number
+              label: strong * Phone Number
               input(name='ecphonenumber', type='text' required)
           .row
             .medium-4.columns
-              label * Choose Location:
+              label: strong * Choose Location:
               input#coolsprings(type='radio' name='location' value='coolsprings' required)
               |  Cool Springs&nbsp;    
               input#greenhills(type='radio' name='location' value='greenhills' required) 
               |  Green Hills
             .medium-2.columns
-              label * Preferred First Class Date
+              label: strong * Preferred First Class Date
               input(name='classdate', type='date', required)
             .medium-2.columns
-              label * Preferred First Class Time 
+              label: strong * Preferred First Class Time 
               input(name='classtime', type='text', required)
             .medium-4.columns
-              label Click Below For Class Times:
+              label: strong Click Below For Class Times:
               a#csschedule(href="http://franklin-coolsprings.titleboxingclub.com/about/class-schedule/") Cool Springs 
               br
               a#ghschedule(href="http://nashville-greenhills.titleboxingclub.com/about/class-schedule/") Green Hills
           .row
             .medium-6.columns
-              label * How Did You Hear About Us?
+              label: strong * How Did You Hear About Us?
               input(name='referral', type='text', required)
           .row
             .medium-12
-              label Fitness Goals
+              label: strong Fitness Goals
               textarea(name="fitnessgoals" rows="2")
             //
               .row

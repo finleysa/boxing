@@ -6,9 +6,11 @@ var path = require('path');
 var exec = require('child_process').exec;
 var twilio = require('twilio');
 var Mongo = require('mongodb');
+/*
 var keys = fs.readFile(__dirname +'/../lib/twilio.txt', 'utf-8', function(err, data){
   return data.split(' ');
 })
+*/
 
 function User(user){
   this.firstname = user.firstname;
