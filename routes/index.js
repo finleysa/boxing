@@ -17,10 +17,10 @@ router.post('/register/submit', function(req, res, next) {
   console.log(req.body);
 
   var user = new User(req.body);
+  var name = user.firstname;
 
   user.insert(function() {
     if(user._id) {
-      var name = user.firstname;
       console.log(name + " added to Database!");
       user.sendToClear(function(success){
           if(success) {
@@ -32,8 +32,8 @@ router.post('/register/submit', function(req, res, next) {
           }
         });
     } else {
-      console.log("ERROR adding user to Database and Clear...");
-      res.render('error', {error: 'This E-mail has already been registered.'});
+      console.log("User information updated");
+      res.render('success', {name: name});
     }
   });
 
