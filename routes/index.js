@@ -20,21 +20,16 @@ router.post('/register/submit', function(req, res, next) {
   var name = user.firstname;
 
   user.insert(function() {
-    if(user._id) {
-      console.log(name + " added to Database!");
-      user.sendToClear(function(success){
-          if(success) {
-            console.log("New user added to Clear! " + name);
-            res.render('success', {name: name});
-          } else {
-            console.log(name + " unable to be added to Clear...");
-            res.render('error', {error: 'Not added to clear'});
-          }
-        });
-    } else {
-      console.log("User information updated");
-      res.render('success', {name: name});
-    }
+    console.log(name + " added to Database!");
+    user.sendToClear(function(success){
+      if(success) {
+        console.log("New user added to Clear! " + name);
+        res.render('success', {name: name});
+      } else {
+        console.log(name + " unable to be added to Clear...");
+        res.render('error', {error: 'Not added to clear'});
+      }
+    });
   });
 
   /*
