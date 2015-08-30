@@ -5,6 +5,8 @@
   function initialize(){
       $('#registration-form').submit(showSpinner);
       $('input[type=radio][name="location"]').change(locationChosen);
+      $('#ghschedule').hide();
+      $('#csschedule').hide();
     }
 
   function showSpinner(){
@@ -22,5 +24,4 @@
       $('#csschedule').hide();
     }
   }
-
 })();

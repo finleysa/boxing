@@ -32,6 +32,7 @@ function User(user){
   this.married = user.married;
   this.location = user.location;
   this.fitnessgoals = user.fitnessgoals;
+  this.titleemployee = user.titleemployee;
   //this.concent = user.concent;
 }
 
@@ -60,7 +61,7 @@ function sendMessage(cellphone) {
   //var client = new twilio.RestClient('', '');
   client.sms.messages.create({
       to: cellphone,
-      from:'+16156868516',
+      from:'+',
       body:'Show this message to your local title gym for a free Power Hour!'
   }, function(error, message) {
       // The HTTP request to Twilio will run asynchronously. This callback
@@ -93,7 +94,9 @@ User.prototype.insert = function(fn){
         fn(err);
       });
     }else{
-      fn(err);
+      users.update({email:self.email}, self, {upsert:"true"}, function(err, records){
+        fn(err);
+      })
     }
   });
 };

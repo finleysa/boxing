@@ -40,7 +40,7 @@ block content
               label: strong * Email Address
               input(name='email', type='text' required)
             .medium-4.columns
-              label: strong * Best Phone #
+              label: strong * Best Phone Number
               input(name='cellphone', type='text', required)
             .medium-4.columns
               label: strong Employer
@@ -53,10 +53,10 @@ block content
               input(type='radio' name='married' value='no') 
               |  Single
             .medium-4.columns
-              label: strong * Emergency Contact
+              label: strong * Emergency Contact Name
               input(name='emergencycontact', type='text' required)
             .medium-4.columns
-              label: strong * Phone Number
+              label: strong * Emergency Contact Phone Number
               input(name='ecphonenumber', type='text' required)
           .row
             .medium-4.columns
@@ -73,13 +73,16 @@ block content
               input(name='classtime', type='text', required)
             .medium-4.columns
               label: strong Click Below For Class Times:
-              a#csschedule(href="http://franklin-coolsprings.titleboxingclub.com/about/class-schedule/") Cool Springs 
+              a#csschedule(href="http://franklin-coolsprings.titleboxingclub.com/about/class-schedule/" target="__blank") Cool Springs 
               br
-              a#ghschedule(href="http://nashville-greenhills.titleboxingclub.com/about/class-schedule/") Green Hills
+              a#ghschedule(href="http://nashville-greenhills.titleboxingclub.com/about/class-schedule/" target="__blank") Green Hills
           .row
             .medium-6.columns
               label: strong * How Did You Hear About Us?
               input(name='referral', type='text', required)
+            .medium-6.columns
+              label: strong Title Employee Spoken To
+              input(name='titleemployee', type='text')
           .row
             .medium-12
               label: strong Fitness Goals

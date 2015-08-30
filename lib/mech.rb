@@ -60,18 +60,18 @@ puts "Logged in!"
 16 this.married = user.married;
 17 this.location = user.location;
 18 this.fitnessgoals = user.fitnessgoals;
-21 this.concent = user.concent;
+19 this.titleemployee = user.titleeployee;
+
 =end
 
 page = page.link_with(:href => '/prospects/NewProspect.aspx').click
 input = 'ctl00$ctl00$ctl00$cphMainBody$cphBody$cphProspectBody$'
 notes = "First Shot Requested Time: " + obj[14] + " ----- Workout Goals: " + obj[18]
+if obj[19]
+  notes = notes + " ----- Employee Spoken To: " + obj[19];
+end
 
 new_form = page.form_with(:id => 'aspnetForm') do |f|
-
-  #f.field_with(:name="#{input}tbEMCFirstName").value = ec_contact[0]
-  #f.field_with(:name="#{input}tbEMCLastName").value = ec_contact[1]
-  #f.field_with(:name="#{input}tbEMCHomePhone").value = obj[12]
 
   f.field_with(:name => "#{input}tbFirstName").value = obj[0]
   f.field_with(:name => "#{input}tbLastName").value = obj[1]
@@ -87,7 +87,7 @@ new_form = page.form_with(:id => 'aspnetForm') do |f|
   f.field_with(:name => "#{input}tbEmail").value = obj[7]
   f.field_with(:name => "#{input}tbHistoryNote").value = notes
   f.field_with(:name => "#{input}tbFirstShotDate").value = obj[13]
-
+  f.field_with(:name => "#{input}ddFirstShotFree").options[1].select
   #f.field_with(:name => "#{input}tbAddNote").value = obj[10]
   if obj[16] = 'no'
     f.field_with(:name => "#{input}ddMarried").options[1].select
